@@ -94,7 +94,7 @@ _start:
 	bl _s3c2440_sdram_init
 	
         ldr sp,=(1024*4)
-	push {lr}
+
 	bl main
 	
 halt:
