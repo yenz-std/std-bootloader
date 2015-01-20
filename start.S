@@ -91,11 +91,22 @@ _start:
 	
 	bl _s3c2440_pll_init
 
-	bl _s3c2440_sdram_init
+	ldr sp,=(1024*4)
 	
-        ldr sp,=(1024*4)
-	push {lr}
-	bl main
+	bl  init_led
+	
+        ldr r0,=0x5
+	
+	bl led_on
+	
+	bl _s3c2440_sdram_init
+
+	ldr r0,=0x6
+	bl led_on
+	
+        ;; ldr sp,=(1024*4)
+	;; push {lr}
+	;; bl main
 	
 halt:
 	b halt
