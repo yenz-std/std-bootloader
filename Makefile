@@ -1,3 +1,24 @@
+
+HOSTNAME	= $(shell uname -n)
+
+ifeq ("$HOSTNAME","yenz_homepc" )
+    CROSS_COMPILE := arm-none-eabi-
+else
+    CROSS_COMPILE := arm-linux-guneabif-
+endif
+
+#cross_compile tools
+
+AS	= $(CROSS_COMPILE)as
+LD	= $(CROSS_COMPILE)ld
+CC	= $(CROSS_COMPILE)gcc
+OBJCOPY = $(CROSS_COMPILE)objcopy
+OBJDUMP	= $(CROSS_COMPILE)objdump
+
+CFLAGS	= -Wall -Wundef -Wstrict-prototypes -Wno-gtrigraphs -Werror-implicit-function-declartion -fno-strict-aliasing -fno-common -Os -pipe -g
+ 
+
+
 led.bin : start.o led.o
 	arm-linux-gnueabihf-ld -g -o led.elf -Ttext 0 start.o led.o
 	arm-linux-gnueabihf-objcopy -O binary  led.elf led.bin
