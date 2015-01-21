@@ -1,0 +1,8 @@
+#ignore same file type
+*.o
+*.bin
+*.elf
+*.dis
+*~
+*.set
+
