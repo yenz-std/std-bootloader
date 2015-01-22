@@ -1,5 +1,5 @@
-#include "s3c2440_gpio.h"
-#include "ledops.h"
+#include <s3c2440_gpio.h>
+#include <ledops.h>
 
 void delay(void)
 {
