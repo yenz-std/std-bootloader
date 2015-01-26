@@ -5,4 +5,5 @@
 *.dis
 *~
 *.set
+bootm
 
