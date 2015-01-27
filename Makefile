@@ -2,7 +2,7 @@ DEBUG := y
 
 HOSTNAME	= $(shell uname -n)
 
-ifeq ("$(HOSTNAME)","yenz_homepc" )
+ifeq ("$(HOSTNAME)","yenz_homepc")
     CROSS_COMPILE := arm-none-eabi-
 else
     CROSS_COMPILE := arm-linux-gnueabihf-
