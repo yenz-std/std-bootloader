@@ -1,8 +1,10 @@
 DEBUG := y
 
-HOSTNAME	= $(shell uname -n)
+HOSTNAME   = $(shell uname -n)
+
 
 ifeq ("$(HOSTNAME)","yenz_homepc")
+
     CROSS_COMPILE := arm-none-eabi-
 else
     CROSS_COMPILE := arm-linux-gnueabihf-
@@ -27,7 +29,7 @@ export CFLAGS LDFLAGS AFLAGS
 srctree := $(shell pwd)
 export srctree  objs
 
-VPATH := $(srctree) : $(srctree)/arch/arm/boards/qq2440 : $(srctree)/arch/arm/cpu/s3c2440/ 
+VPATH := $(srctree) : $(srctree)/arch/arm/boards/qq2440 : $(srctree)/arch/arm/cpu/s3c2440/ : $(srctree)/drivers/serial/uart/
 
 
 id1  := $(srctree)/arch/arm/cpu/s3c2440/include
@@ -36,12 +38,14 @@ id3 := $(srctree)/include
 id  := -I$(id1) -I$(id2) -I$(id3)
 
 include $(srctree)/arch/arm/Makefile
+include $(srctree)/drivers/serial/uart/Makefile
 LDFLAGS := -g -T $(srctree)/arch/arm/boards/qq2440/qq2440.lds
 .PHONY := all
 all : $(objs)
 	$(LD) $(LDFLAGS) -o bootm  $^
 	$(OBJCOPY) -O binary bootm led.bin
 	$(OBJDUMP) -D bootm > led.dis
+
 led.bin : $(objs)  
 	arm-linux-gnueabihf-ld -g -o led.elf -Ttext 0 $^
 	arm-linux-gnueabihf-objcopy -O binary  led.elf led.bin
@@ -58,4 +62,4 @@ NOSTDINC_FLAGS += -nostdinc -isystem $(shell $(CC) -print-file-name=include)
 
 
 clean :
-	@ -rm *.o *.bin  *.dis  *.elf *~
+	@ -rm *.o *.bin  *.dis  *.elf *~ bootm \#*\#
