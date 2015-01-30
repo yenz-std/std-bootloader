@@ -4,7 +4,7 @@
 void init_uart(void);
 
 char getc(void);
-void putc(char);
+void putc(char i);
 
 
 #endif

@@ -11,16 +11,18 @@ void  delay(volatile unsigned long i)
 
 int main(void)
 {
-  int i ;
-
+  unsigned int  i ;
+  char x = '5';
   init_led();
   init_uart();
-
+  led_on(x);
   while(1)
 {
-  putc('q');
-  i = getc();
-  led_on(i);
+   x = getchar();
+   led_on(6);
+   putchar(x);
+   if(x==6)
+  led_off(6);
 }
   
   /* while(1){ */

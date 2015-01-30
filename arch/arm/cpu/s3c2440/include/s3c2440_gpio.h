@@ -6,8 +6,8 @@
 #define GPBDAT  0x56000014
 
 /* uart 0 gpio */
-#define GPHCON  0x560000070
-#define GPHDAT  0x560000074
+#define GPHCON  0x56000070
+#define GPHDAT  0x56000074
 
 
 #endif

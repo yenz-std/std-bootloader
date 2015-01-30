@@ -18,7 +18,7 @@ CC	= $(CROSS_COMPILE)gcc
 OBJCOPY = $(CROSS_COMPILE)objcopy
 OBJDUMP	= $(CROSS_COMPILE)objdump
 
-CFLAGS	= -Wall -Wundef -Wstrict-prototypes -Wno-gtrigraphs -fno-strict-aliasing -fno-common -Os -pipe
+CFLAGS	= -Wall -Wundef -Wstrict-prototypes -Wno-gtrigraphs -fno-strict-aliasing -fno-common -Os -pipe -fno-builtin
  
  ifeq ("$(DEBUG)","y")
 	CFLAGS += -g

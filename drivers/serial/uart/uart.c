@@ -8,23 +8,24 @@ void init_uart(void)
   i = ((i & 0xff00) | 0xaa);
   writel(i,GPHCON);
 
-  writel(0x23,ULCON0);
+  writel(0x3,ULCON0);
   writel(0x5,UCON0);
   writel(0x0,UFCON0);
-  writel(0x1b,UBRDIV0);
+  writew(26,UBRDIV0);
 }
 
-char getc(void)
+char getchar(void)
 { 
- 
-  while((readl(UTRSTAT0) & 0x1) == 0);
+  //  while(((readl(UFSTAT0) & (1<<6)) == 0) && ((readl(UFSTAT0) & 0x3f) == 0));
+   while((readl(UTRSTAT0) & 0x1) == 0);
   return readb(URXH0);
 
 }
 
 
-void putc(char i)
+void putchar(char i)
 {
+  // while((readl(UFSTAT0) & (1<<14)) == 1);
   while((readl(UTRSTAT0) & 0x2) == 0);
   writeb(i,UTXH0);
 }
