@@ -11,7 +11,7 @@ void init_uart(void)
   writel(0x3,ULCON0);
   writel(0x5,UCON0);
   writel(0x0,UFCON0);
-  writew(26,UBRDIV0);
+  writew(27,UBRDIV0);
 }
 
 char getchar(void)

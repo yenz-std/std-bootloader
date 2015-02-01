@@ -1,6 +1,9 @@
 #include <s3c2440_gpio.h>
 #include <ledops.h>
 #include <uart.h>
+#include <nand.h> 
+
+
 
 void  delay(volatile unsigned long i)
 {
@@ -12,10 +15,13 @@ void  delay(volatile unsigned long i)
 int main(void)
 {
   unsigned int  i ;
-  char x = '5';
+  char x = 5;
   init_led();
   init_uart();
   led_on(x);
+  //   nf_init();
+  // nf_read(0,0x30000000,2048);
+
   while(1)
 {
    x = getchar();

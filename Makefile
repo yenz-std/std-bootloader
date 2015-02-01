@@ -5,7 +5,7 @@ HOSTNAME   = $(shell uname -n)
 
 ifeq ("$(HOSTNAME)","yenz_homepc")
 
-    CROSS_COMPILE := arm-none-eabi-
+    CROSS_COMPILE := arm-linux-gnueabihf-
 else
     CROSS_COMPILE := arm-linux-gnueabihf-
 endif
@@ -18,7 +18,7 @@ CC	= $(CROSS_COMPILE)gcc
 OBJCOPY = $(CROSS_COMPILE)objcopy
 OBJDUMP	= $(CROSS_COMPILE)objdump
 
-CFLAGS	= -Wall -Wundef -Wstrict-prototypes -Wno-gtrigraphs -fno-strict-aliasing -fno-common -Os -pipe -fno-builtin
+CFLAGS	= -Wall -Wundef -Wstrict-prototypes -fno-strict-aliasing -fno-common -Os -pipe -fno-builtin
  
  ifeq ("$(DEBUG)","y")
 	CFLAGS += -g
@@ -29,7 +29,7 @@ export CFLAGS LDFLAGS AFLAGS
 srctree := $(shell pwd)
 export srctree  objs
 
-VPATH := $(srctree) : $(srctree)/arch/arm/boards/qq2440 : $(srctree)/arch/arm/cpu/s3c2440/ : $(srctree)/drivers/serial/uart/
+VPATH := $(srctree) : $(srctree)/arch/arm/boards/qq2440 : $(srctree)/arch/arm/cpu/s3c2440/ : $(srctree)/drivers/serial/uart/:$(srctree)/drivers/nand/
 
 
 id1  := $(srctree)/arch/arm/cpu/s3c2440/include
@@ -39,6 +39,7 @@ id  := -I$(id1) -I$(id2) -I$(id3)
 
 include $(srctree)/arch/arm/Makefile
 include $(srctree)/drivers/serial/uart/Makefile
+include $(srctree)/drivers/nand/Makefile
 LDFLAGS := -g -T $(srctree)/arch/arm/boards/qq2440/qq2440.lds
 .PHONY := all
 all : $(objs)

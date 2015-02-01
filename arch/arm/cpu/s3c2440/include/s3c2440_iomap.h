@@ -95,4 +95,26 @@
 #define UBRDIV1   (UART1_BASE + 0x28)
 #define UBRDIV2   (UART2_BASE + 0x28)
 
+/* nand flash controller register */
+#define NF_RG_BASE 0x4e000000
+#define NFCONF     (NF_RG_BASE + 0x0)
+#define NFCONT     (NF_RG_BASE + 0x4)
+#define NFCMMD     (NF_RG_BASE + 0x8)
+#define NFADDR     (NF_RG_BASE + 0xc)
+#define NFDATA     (NF_RG_BASE + 0x10)
+#define NFMECCD0   (NF_RG_BASE + 0x14)
+#define NFMECCD1   (NF_RG_BASE + 0x18)
+#define NFSECCD    (NF_RG_BASE + 0x1c)
+#define NFSTAT     (NF_RG_BASE + 0x20)
+#define NFESTAT0   (NF_RG_BASE + 0x24)
+#define NFESTAT1   (NF_RG_BASE + 0x28)
+#define NFMECC0    (NF_RG_BASE + 0x2c)
+#define NFMECC1    (NF_RG_BASE + 0x30)
+#define NFSECC     (NF_RG_BASE + 0x34)
+#define NFSBLK     (NF_RG_BASE + 0x38)
+#define NFEBLK     (NF_RG_BASE + 0x3c)
+
+
+ 
+
 #endif

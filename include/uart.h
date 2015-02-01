@@ -3,8 +3,8 @@
 
 void init_uart(void);
 
-char getc(void);
-void putc(char i);
+char getchar(void);
+void putchar(char i);
 
 
 #endif
