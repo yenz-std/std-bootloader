@@ -3,11 +3,11 @@ OUTPUT_ARCH(arm)
 ENTRY(_start)
 SECTIONS
 {
-  . = 0x0;
+  . = 0x00000800;
   _scopy = .;
 
 .text :
-     {
+     { 
       *(.text.bootm_init.text) ;
       *(.text)
      }
@@ -19,4 +19,4 @@ _sbss = .;
 .bss :{*(.bss)}
  _ebss = .;
 }
-_copysize = _scopy - _ecopy;
+

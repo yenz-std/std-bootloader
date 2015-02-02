@@ -48,7 +48,7 @@ all : $(objs)
 	$(OBJDUMP) -D bootm > led.dis
 
 led.bin : $(objs)  
-	arm-linux-gnueabihf-ld -g -o led.elf -Ttext 0 $^
+	arm-linux-gnueabihf-ld -g -r -o led.elf -Ttext 0 $^
 	arm-linux-gnueabihf-objcopy -O binary  led.elf led.bin
 	arm-linux-gnueabihf-objdump -D  led.elf > start.dis
 
@@ -56,10 +56,10 @@ led.bin : $(objs)
 NOSTDINC_FLAGS += -nostdinc -isystem $(shell $(CC) -print-file-name=include)
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(NOSTDINC_FLAGS) $(id) -march=armv4t -msoft-float -marm -o $@ $< -c
+	$(CC) $(CFLAGS) $(NOSTDINC_FLAGS) $(id) -fpic -march=armv4t -msoft-float -marm -o $@ $< -c
 
 %.o : %.S
-	$(CC) $(CFLAGS)  $(NOSTDINC_FLAGS) $(id) -march=armv4t -msoft-float -marm -o $@ $< -c
+	$(CC) $(CFLAGS)  $(NOSTDINC_FLAGS) $(id) -fpic -march=armv4t -msoft-float -marm -o $@ $< -c
 
 
 clean :

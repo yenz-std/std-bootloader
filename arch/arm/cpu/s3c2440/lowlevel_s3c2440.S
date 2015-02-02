@@ -53,7 +53,7 @@ _s3c2440_pll_init:
 	nop
 	nop
 	
-	mov pc, lr
+	mov pc,lr
 
 	
 .global _s3c2440_sdram_init
@@ -66,7 +66,7 @@ _s3c2440_sdram_init:
 	str r5,[r0],#4
 	cmp r0,r3
 	bne 1b
-	mov pc, lr
+	mov pc,lr
 
 men_cf:
 	.word  ((0x3 << 28) | (0x2 << 24) | 0x333330)

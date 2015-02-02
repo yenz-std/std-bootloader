@@ -27,7 +27,7 @@ int main(void)
    x = getchar();
    led_on(6);
    putchar(x);
-   if(x==6)
+   if(x == 'x')
   led_off(6);
 }
   

@@ -1,1 +1,1 @@
-objs += lowlevel_s3c2440.o
+ objs += lowlevel_s3c2440.o

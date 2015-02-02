@@ -6,4 +6,5 @@
 *~
 *.set
 bootm
-#*#
+\#*#
+gdbinit
