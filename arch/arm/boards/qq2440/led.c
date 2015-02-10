@@ -2,7 +2,7 @@
 #include <ledops.h>
 #include <uart.h>
 #include <nand.h> 
-
+#include <stdio.h>
 
 
 void  delay(volatile unsigned long i)
@@ -24,9 +24,10 @@ int main(void)
 
   while(1)
 {
-   x = getchar();
-   led_on(6);
-   putchar(x);
+  printf("please put i: /n");
+    scanf("%d",&i);
+   led_on(i);
+   putchar(i);
    if(x == 'x')
   led_off(6);
 }
