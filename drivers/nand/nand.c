@@ -77,11 +77,12 @@ void __bootm_init nf_init(void)
 
 static void __bootm_init nand_send_addr(unsigned int addr)
 {
-  send_addr(addr && 0xff);
-  send_addr((addr >> 9) && 0xff);
-  send_addr((addr >> 17) && 0xff);
-  send_addr((addr >> 25) && 0xff);
 
+  send_addr(addr & 0xff);
+  send_addr((addr >> 9) & 0xff );
+  send_addr((addr >> 17) & 0xff);
+  send_addr((addr >> 25) & 0xff);
+ 
 }
 
 
@@ -89,10 +90,11 @@ static void __bootm_init nand_send_addr(unsigned int addr)
 void __bootm_init nf_read(unsigned int src_addr, unsigned int desc_addr, unsigned int size)
 {
   int i = 0;
+ 
   int count = 0;
   unsigned int addr = src_addr;
 
-  enable_cs();
+ 
  /* unsigned int column_addr = src_addr % 512; */
  /*  unsigned int page_addr = (src_addr >> 9); */
    unsigned char * buf = (unsigned char *)desc_addr; 
@@ -106,6 +108,9 @@ void __bootm_init nf_read(unsigned int src_addr, unsigned int desc_addr, unsigne
     /* if(column_addr < 255)  */
     /*   send_cmd(NF_CMD_READ1_1ST);else */
     /*   send_cmd(NF_CMD_READ1_2ND); */
+     reset_nand();
+     enable_cs();
+
      send_cmd(NF_CMD_READ1_1ST);
      nand_send_addr(addr);
    
@@ -119,7 +124,7 @@ void __bootm_init nf_read(unsigned int src_addr, unsigned int desc_addr, unsigne
     }
    i = 0;
      //  column_addr = 0;		
-    
+   disable_cs(); 
 
   }
 

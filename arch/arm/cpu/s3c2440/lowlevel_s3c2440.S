@@ -57,9 +57,10 @@ _s3c2440_pll_init:
 
 	
 .global _s3c2440_sdram_init
+	
 _s3c2440_sdram_init:
 	ldr r0,=BWSCON
-	ldr r1,=men_cf
+	adr r1,men_cf
 	ldr r3,=0x48000034
 1:
 	ldr r5,[r1],#4
@@ -78,9 +79,13 @@ men_cf:
 	.word  0x00000700
 	.word  0x00018005
 	.word  0x00018005
-	.word  ((0x1 << 23) | (0x0 << 22) | (0x0 << 20) | (0x1 << 18) | 1269)
+	.word  ((0x1 << 23) | (0x0 << 22) | (0x0 << 20) | (0x1 << 18) | 1012)
 	.word  ((0x1 << 7) | (0x1 << 5) | (0x1 << 4) | 0x1)
 	.word  (0x2 << 4)
 	.word  0x0
+
+
+
+
 	
 		

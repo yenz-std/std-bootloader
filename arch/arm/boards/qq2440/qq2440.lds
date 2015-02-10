@@ -3,7 +3,7 @@ OUTPUT_ARCH(arm)
 ENTRY(_start)
 SECTIONS
 {
-  . = 0x00000800;
+  . = 0x30000000;
   _scopy = .;
 
 .text :
